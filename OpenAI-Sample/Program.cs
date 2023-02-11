@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
@@ -15,9 +14,9 @@ class Program
         Console.WriteLine("Answer: " + response);
     }
 
-    private static string GetResponseFromOpenAI(string question)
+    private static string? GetResponseFromOpenAI(string? question)
     {
-        var apiKey = "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";
+        var apiKey = "{put_api_key}";
         var prompt = $"{question}";
 
         var httpClient = new HttpClient();
@@ -42,26 +41,26 @@ class Program
         var responseString = response.Content.ReadAsStringAsync().Result;
         var responseJson = JsonConvert.DeserializeObject<OpenAI_Response>(responseString);
 
-        return responseJson.choices[0].text;
+        return responseJson?.choices?[0].text;
     }
 }
 class OpenAI_Request
 {
-    public string model { get; set; }
-    public string prompt { get; set; }
-    public double temperature { get; set; }
-    public int max_tokens { get; set; }
-    public double top_p { get; set; }
-    public double frequency_penalty { get; set; }
-    public double presence_penalty { get; set; }
-}
-
-class OpenAI_Response
-{
-    public Choice[] choices { get; set; }
+    public string? model { get; set; }
+    public string? prompt { get; set; }
+    public double? temperature { get; set; }
+    public int? max_tokens { get; set; }
+    public double? top_p { get; set; }
+    public double? frequency_penalty { get; set; }
+    public double? presence_penalty { get; set; }
 }
 
 class Choice
 {
-    public string text { get; set; }
+    public string? text { get; set; }
+}
+
+class OpenAI_Response
+{
+    public Choice[]? choices { get; set; }
 }
