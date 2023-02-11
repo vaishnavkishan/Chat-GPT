@@ -27,7 +27,7 @@ class Program
             new OpenAI_Request
             {
                 model = "text-davinci-003",
-                prompt = "Joke:"+prompt,
+                prompt = "Computer programmer Joke about:"+prompt,
                 temperature = 1,
                 max_tokens = 128,
                 top_p = 1,
